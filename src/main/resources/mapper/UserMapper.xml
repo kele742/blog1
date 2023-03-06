@@ -5,7 +5,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--名字要与mapper中的接口名保持一致,然后就对应上了-->
-<mapper namespace="com.example.mybatis.mapper.UserMapper">
+<mapper namespace="com.blog.mapper.UserMapper">
 
 <!--    方法名要与id保持一致-->
 <!--    int insertUser();-->
@@ -24,7 +24,7 @@
 <!--    resultType:设置结果类型，即查询的数据要转换的java类型
         resultMap:自定义映射，处理一对一或一对多的映射关系
 -->
-    <select id="getUserById" resultType="com.example.mybatis.pojo.User">
+    <select id="getUserById" resultType="com.blog.pojo.User">
         select * from t_user where id = 1
     </select>
 
