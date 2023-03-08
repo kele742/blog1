@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Pointcut("execution(* com.blog.web.*(..))")
+    @Pointcut("execution(* com.blog.web.*.*(..))")
     public void log(){
 
     }
