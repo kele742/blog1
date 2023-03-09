@@ -1,32 +1,49 @@
 package com.blog.pojo;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "t_user")
 public class User {
-    private Integer id;
+    @Id
+    //生成策略
+    @GeneratedValue
+    private Long id;
+    private String nickname;
     private String username;
     private String password;
-    private Integer age;
-    private String gender;
     private String email;
+    private String avatar;
+    private Integer type;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creatTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateTime;
+
+    @OneToMany(mappedBy = "user")
+    private List<Blog> blogs = new ArrayList<>();
     public User() {
 
     }
 
-    public User(Integer id, String username, String password, Integer age, String gender, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.age = age;
-        this.gender = gender;
-        this.email = email;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getUsername() {
@@ -45,22 +62,6 @@ public class User {
         this.password = password;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -69,15 +70,58 @@ public class User {
         this.email = email;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", nickname='" + nickname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", type=" + type +
+                ", creatTime=" + creatTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }
