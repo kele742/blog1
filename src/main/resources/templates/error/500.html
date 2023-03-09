@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/indexMe.css">
     <title>500</title>
 </head>
 <body>
-    <h1>500</h1>
+<!--    导航-->
+<nav th:replace="_fragments :: menu(0)" class="ui attached segment m-padded-tb-mini m-shadow-small" style="background-color: lightgray" >
+    <div class="ui container">
+        <div class="ui  secondary stackable menu">
+            <h2 class="ui teal header item">Blog</h2>
+            <a href="#" class="head1 item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="head1 item m-mobile-hide"><i class="idea icon"></i>分类</a>
+            <a href="#" class="head1 item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" class="head1 item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="head1 item m-mobile-hide"><i class="info icon"></i>关于我</a>
+
+            <div class="right head1 item m-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" aria-label="" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<br><br><br><br>
+<div class="m-container-small m-padded-tb-massive">
+    <div class="ui error message m-padded-to-big">
+        <div class="ui container">
+            <h2>500</h2>
+            <p>对不起，您访问的页面出错了</p>
+
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+
+
+<footer th:replace="_fragments :: footer" class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img src="../../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width: 100px">
+            </div>
+            <div class="three wide column">
+                <h4 class="ui header">最新博客</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">用户故事(User Story)</a>
+                    <a href="#" class="item">用户故事(User Story)</a>
+                    <a href="#" class="item">用户故事(User Story)</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui header">联系我</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Email: x6kele@163.com</a>
+                    <a href="#" class="item">QQ: 1349746992</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui header ">最新博客</h4>
+                <p class="m-text-spaced m-text-thin m-opacity-mini">这是我的个人博客、会分享一些关于编程的知识、学习心得,希望可以给来到这的人有所帮助,谢谢</p>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-padded-to-micro m-opacity-mini m-text-spaced">
+            Copyright 2023-2024Lirenmi Designed by XXY
+        </p>
+    </div>
+</footer>
 </body>
 </html>

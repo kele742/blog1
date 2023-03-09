@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="../static/css/indexMe.css" th:href="@{/css/indexMe.css}">
-    <title>首页</title>
+    <link rel="stylesheet" href="../static/css/indexMe.css">
+    <title>博客</title>
 </head>
 <body>
 
 <!--    导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small" style="background-color: lightgray" >
+    <nav th:replace="_fragments :: menu(1)" class="ui attached segment m-padded-tb-mini m-shadow-small" style="background-color: lightgray" >
         <div class="ui container">
             <div class="ui  secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="active head1 item m-mobile-hide"><i class="home icon"></i>首页</a>
+                <a href="#" class="head1 item m-mobile-hide"><i class="home icon"></i>首页</a>
                 <a href="#" class="head1 item m-mobile-hide"><i class="idea icon"></i>分类</a>
                 <a href="#" class="head1 item m-mobile-hide"><i class="tags icon"></i>标签</a>
                 <a href="#" class="head1 item m-mobile-hide"><i class="clone icon"></i>归档</a>
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="five wide column">
                                     <a href="" class="_blank">
-                                        <img src="https://unsplash.it/800/350?image=1005" alt="" class="ui rounded  middle image">
+                                        <img src="https://unsplash.it/800/350?image=1005" alt="" class="ui rounded middle image">
                                     </a>
                                 </div>
                             </div>
@@ -440,7 +440,7 @@
 <!--                    二维码-->
                     <h4 class="ui horizontal divider header">扫码关注我</h4>
                     <div class="ui centered card" style="width: 11em">
-                        <img src="../static/images/wechat.jpg" alt="" class="ui rounded image">
+                        <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image">
                     </div>
                 </div>
             </div>
@@ -451,11 +451,11 @@
     <br>
 
 <!--    底部footer-->
-    <footer class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
+    <footer th:replace="_fragments :: footer" class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
-                    <img src="../static/images/wechat.jpg" class="ui rounded image" alt="" style="width: 100px">
+                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width: 100px">
                 </div>
                 <div class="three wide column">
                     <h4 class="ui header">最新博客</h4>
@@ -483,8 +483,10 @@
             </p>
         </div>
     </footer>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
 
     <script>
 <!--        拿到顶部导航button按钮了-->

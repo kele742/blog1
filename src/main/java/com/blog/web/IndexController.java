@@ -18,4 +18,14 @@ public class IndexController {
         System.out.println("------------index-------------");
         return "index";
     }
+    @GetMapping("/blog")
+    public String blog(){
+//        int i = 9/0;
+//        String blog = null;
+//        if(blog == null){
+//            throw  new NotFoundException("博客不存在");
+//        }
+        System.out.println("------------index-------------");
+        return "blog";
+    }
 }

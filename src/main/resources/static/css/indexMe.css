@@ -5,9 +5,14 @@ body{
 .m-padded-tb-mini{
     padding-top: 0.2em !important;
     padding-bottom: 0.2em !important;
+
 }
 .m-padded-tiny{
     padding: 0.4em !important;
+}
+
+.m-padded-tb-massive{
+    padding: 4em 1.5em !important;
 }
 
 .m-padded-tb-large{
