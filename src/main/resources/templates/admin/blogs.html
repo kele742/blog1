@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
@@ -10,7 +10,7 @@
 <body>
 
 <!--    导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small " style="background-color: lightgray" >
+    <nav th:replace="admin/_fragments :: menu(1)" class="ui attached segment m-padded-tb-mini m-shadow-small " style="background-color: lightgray" >
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h2 class="ui orange header item">管理后台</h2>
@@ -122,7 +122,7 @@
     <br>
 
 <!--    底部footer-->
-    <footer class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
+    <footer th:replace="admin/_fragments :: footer" class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
@@ -154,9 +154,9 @@
             </p>
         </div>
     </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-
     <script>
 <!--        拿到顶部导航button按钮了-->
         $('.menu.toggle').click(function () {

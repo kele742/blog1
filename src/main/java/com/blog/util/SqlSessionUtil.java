@@ -1,4 +1,4 @@
-package com.blog.utils;
+package com.blog.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
