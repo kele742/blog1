@@ -1,6 +1,7 @@
 package com.blog.pojo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Type {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank(message = "分类名称不能为空")
     private String name;
 
     //其中指定了维护关系和被维护关系,此时指定type为被维护关系

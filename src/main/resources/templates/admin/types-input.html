@@ -49,9 +49,9 @@
 <!--    中间内容-->
     <div class="m-container-small m-padded-to-massive">
         <div class="ui container">
-            <form action="" method="post" class="ui form">
+            <form action="" method="post" th:action="@{/admin/types}" class="ui form">
 
-                <div class="field">
+                <div class="required field">
                     <div class="ui left labeled input">
                         <label class="ui orange basic label">名称</label>
                         <input type="text" name="name" placeholder="分类名称">
@@ -62,7 +62,7 @@
 
                 <div class="ui right aligned container">
                     <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
-                    <button class="ui orange button">提交</button>
+                    <button class="ui orange submit button">提交</button>
 
                 </div>
             </form>
@@ -126,10 +126,10 @@
         $('.ui.form').form({
             fields : {
                 title : {
-                    identifier : 'title',
+                    identifier : 'name',
                     rules : [{
                         type : 'empty',
-                        prompt : '标题:请输入博客标题'
+                        prompt : '请输入分类名称'
                     }]
                 }
             }

@@ -49,6 +49,11 @@
     <div class="m-container-small m-padded-to-massive">
         <div class="ui container">
 
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">恭喜，操作成功！</p>
+            </div>
             <table class="ui celled table">
                 <thead>
                 <tr>
@@ -58,8 +63,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="type : ${page.content}">
-                <td>1</td>
+                <tr th:each="type,iterStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
                 <td th:text="${type.name}">刻意清单练习</td>
                 <td>
                     <a href="#" th:href="@{/admin/types/{id}/input(id = ${type.id})}" class="ui mini orange basic button">编辑</a>
@@ -70,11 +75,11 @@
                 <tfoot>
                 <tr>
                     <th colspan="6">
-                        <div class="ui mini pagination menu">
-                            <a class="item" style="color: orange">上一页</a>
-                            <a class="item" style="color: orange">下一页</a>
+                        <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                            <a th:href="@{/admin/types(page = ${page.number}-1)}" th:unless="${page.first}" class="item" style="color: orange">上一页</a>
+                            <a th:href="@{/admin/types(page = ${page.number}+1)}" th:unless="${page.last}" class="item" style="color: orange">下一页</a>
                         </div>
-                        <a href="#" class="ui mini right floated orange basic button">新增</a>
+                        <a href="#" th:href="@{/admin/types/input}" class="ui mini right floated orange basic button">新增</a>
                     </th>
                 </tr>
                 </tfoot>
@@ -83,6 +88,9 @@
     </div>
     <br>
     <br>
+<br>
+<br>
+<br>
 
 <!--    底部footer-->
     <footer th:replace="admin/_fragments :: footer" class="ui  vertical segment m-padded-to-massive" style="background-color: lightgrey" >
@@ -128,6 +136,13 @@
         $('.ui.dropdown').dropdown({
             on : 'hover'
         });
+    //    消息提示关闭初始化
+        $('.message .close')
+            .on('click',function (){
+                $(this)
+                .closest('.message')
+                .transition('fade');
+            });
     </script>
 </body>
 </html>
