@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -58,12 +58,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="type : ${page.content}">
                 <td>1</td>
-                <td>刻意清单练习</td>
+                <td th:text="${type.name}">刻意清单练习</td>
                 <td>
-                    <a href="#" class="ui mini orange basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
+                    <a href="#" th:href="@{/admin/types/{id}/input(id = ${type.id})}" class="ui mini orange basic button">编辑</a>
+                    <a href="#" th:href="@{/admin/types/{id}/delete(id = ${type.id})}" class="ui mini red basic button">删除</a>
                 </td>
                 </tr>
                 </tbody>
