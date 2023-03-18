@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="type,iterStat : ${page.content}">
-                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.id}">1</td>
                 <td th:text="${type.name}">刻意清单练习</td>
                 <td>
                     <a href="#" th:href="@{/admin/types/{id}/input(id = ${type.id})}" class="ui mini orange basic button">编辑</a>
