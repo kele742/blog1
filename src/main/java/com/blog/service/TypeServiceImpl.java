@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,5 +57,13 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public void deleteType(Long id) {
         typeRepository.deleteById(id);
+
     }
+//    @Transactional
+//    @Modifying(clearAutomatically = true)
+//    @Query(value = "update t_table set id = id-1 where id>1")
+//    public void updateSec(Long id) {
+//        typeRepository.findById(id);
+//
+//    }
 }

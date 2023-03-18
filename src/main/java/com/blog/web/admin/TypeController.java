@@ -88,6 +88,7 @@ public class TypeController {
     public String delete(@PathVariable Long id,RedirectAttributes attributes){
         typeService.deleteType(id);
 
+//        typeService.updateSec(id);
         attributes.addFlashAttribute("message","删除成功");
 
         return "redirect:/admin/types";
