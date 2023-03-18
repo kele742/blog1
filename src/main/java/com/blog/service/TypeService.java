@@ -8,6 +8,8 @@ public interface TypeService {
 
     Type saveType(Type type);
 
+    Type getTypeByName(String name);
+
     Type getType(Long id);
 
     Page<Type> listType(Pageable pageable);
