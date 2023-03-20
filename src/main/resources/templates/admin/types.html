@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:date-th="http://www.w3.org/1999/xhtml">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -75,10 +76,11 @@
                 <tfoot>
                 <tr>
                     <th colspan="6">
-                        <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
-                            <a th:href="@{/admin/types(page = ${page.number}-1)}" th:unless="${page.first}" class="item" style="color: orange">上一页</a>
-                            <a th:href="@{/admin/types(page = ${page.number}+1)}" th:unless="${page.last}" class="item" style="color: orange">下一页</a>
-                        </div>
+                    <div class="ui mini middle floated pagination menu" th:if="${page.totalPages}>1">
+                        <a th:href="@{/admin/types(page = ${page.number}-1)}" class="item" style="color: orange">上一页</a>
+                        <a th:text="${page.number}+1" class="item">1</a>
+                        <a th:href="@{/admin/types(page = ${page.number}+1)}" th:unless="${page.last}" class="item" style="color: orange">下一页</a>
+                    </div>
                         <a href="#" th:href="@{/admin/types/input}" class="ui mini right floated orange basic button">新增</a>
                     </th>
                 </tr>
