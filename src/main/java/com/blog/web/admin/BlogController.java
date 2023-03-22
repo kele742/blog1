@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,7 +31,7 @@ public class BlogController {
         return "admin/blogs";
     }
 
-    @GetMapping("/blogs/search")
+    @PostMapping("/blogs/search")
     public String search(@PageableDefault(size = 2,sort = {"updateTime"},direction = Sort.Direction.DESC)
                                 Pageable pageable, BlogQuery blog, Model model){
         model.addAttribute("page",blogService.listBlog(pageable,blog));
