@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "t_table")
+@Table(name = "t_type")
 public class Type {
     @Id
     @GeneratedValue

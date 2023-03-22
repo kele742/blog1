@@ -4,6 +4,7 @@ import com.blog.NotFoundException;
 import com.blog.dao.BlogRepository;
 import com.blog.pojo.Blog;
 import com.blog.pojo.Type;
+import com.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +34,7 @@ public class BLogServiceImpl implements BlogService{
 
     @Transactional
     @Override
-    public Page<Blog> listBlog(Pageable pageable, Blog blog) {
+    public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
 
 
         return blogRepository.findAll(new Specification<Blog>() {
@@ -44,11 +45,11 @@ public class BLogServiceImpl implements BlogService{
                 if(!"".equals(blog.getTitle()) && blog.getTitle() != null){
                     predicates.add(cb.like(root.<String>get("title"),"%"+blog.getTitle()+"%"));
                 }
-                if(blog.getType().getId() != null){
-                    predicates.add(cb.equal(root.<Type>get("type").get("id"),blog.getType().getId()));
+                if(blog.getTypeId() != null){
+                    predicates.add(cb.equal(root.<Type>get("type").get("id"),blog.getTypeId()));
                 }
-                if(blog.isRecommended()){
-                    predicates.add(cb.equal(root.<Boolean>get("recommend"),blog.isRecommended()));
+                if(blog.isRecommend()){
+                    predicates.add(cb.equal(root.<Boolean>get("recommend"),blog.isRecommend()));
                 }
                 query.where(predicates.toArray(new Predicate[predicates.size()]));
                 return null;
