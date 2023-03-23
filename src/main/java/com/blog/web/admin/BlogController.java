@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class BlogController {
 
+    private static final String INPUT = "admin/blogs-input";
+    private static final String LIST = "admin/blogs";
+    private static final String REDIRECT_LIST = "redirect:admin/blogs";
+
     @Autowired
     private BlogService blogService;
     @Autowired
@@ -36,5 +40,11 @@ public class BlogController {
                                 Pageable pageable, BlogQuery blog, Model model){
         model.addAttribute("page",blogService.listBlog(pageable,blog));
         return "admin/blogs :: blogList";
+    }
+
+    @GetMapping("/blogs/input")
+    public String input(){
+
+        return "admin/blogs-input";
     }
 }
