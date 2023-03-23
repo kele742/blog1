@@ -43,8 +43,8 @@ public class BlogController {
     }
 
     @GetMapping("/blogs/input")
-    public String input(){
-
+    public String input(Model model){
+        model.addAttribute("blog",new Blog());
         return "admin/blogs-input";
     }
 }
