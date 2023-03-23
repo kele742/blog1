@@ -2,6 +2,7 @@ package com.blog.web.admin;
 
 import com.blog.pojo.Blog;
 import com.blog.service.BlogService;
+import com.blog.service.TagService;
 import com.blog.service.TypeService;
 import com.blog.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class BlogController {
     private BlogService blogService;
     @Autowired
     private TypeService typeService;
+    @Autowired
+    private TagService tagService;
 
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 2,sort = {"updateTime"},direction = Sort.Direction.DESC)
@@ -44,6 +47,8 @@ public class BlogController {
 
     @GetMapping("/blogs/input")
     public String input(Model model){
+        model.addAttribute("types",typeService.listType());
+        model.addAttribute("tags",tagService.listTag());
         model.addAttribute("blog",new Blog());
         return "admin/blogs-input";
     }
