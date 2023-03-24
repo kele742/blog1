@@ -42,6 +42,8 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> lists = new ArrayList<>();
 
+
+
     public Blog() {
     }
 
