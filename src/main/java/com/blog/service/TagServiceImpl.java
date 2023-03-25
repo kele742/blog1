@@ -73,6 +73,7 @@ public class TagServiceImpl implements TagService {
                 list.add(Long.valueOf(idarray[i]));
             }
         }
+        return list;
     }
 
     @Transactional

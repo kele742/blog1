@@ -1,5 +1,7 @@
 package com.blog.pojo;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +44,8 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> lists = new ArrayList<>();
 
-
+    @Transient
+    private String tagIds;
 
     public Blog() {
     }
@@ -181,6 +184,14 @@ public class Blog {
 
     public void setLists(List<Comment> lists) {
         this.lists = lists;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
     }
 
     @Override

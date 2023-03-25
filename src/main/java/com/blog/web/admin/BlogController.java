@@ -61,7 +61,8 @@ public class BlogController {
     public String post(Blog blog, RedirectAttributes attributes, HttpSession session){
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
-        blog.setTags(tagService.listTag(blog.getTags())));
+        blog.setTags(tagService.listTag(blog.getTagIds()));
+
         Blog b = blogService.saveBlog(blog);
         if( b == null){
             //如果保存成功给一个提示

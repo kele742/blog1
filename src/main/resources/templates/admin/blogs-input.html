@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="admin/_fragments :: head(~{::title})">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
-    <link rel="stylesheet" href="../../static/css/indexMe.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" >
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" href="../../static/css/indexMe.css" th:href="@{/css/indexMe.css}">
     <title>博客发布</title>
 </head>
 <body>
@@ -68,7 +68,7 @@
 
                 <div class="required field">
                     <div id="md-content" style="z-index: 1 !important;">
-                        <textarea placeholder="博客内容" name="content" style="display: none"></textarea>
+                        <textarea placeholder="博客内容" name="content" style="display: none" th:text="*{content}"></textarea>
                     </div>
                 </div>
 
@@ -94,10 +94,7 @@
                                 <i class="dropdown icon"></i>
                                 <div class="default text">标签</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1">java</div>
-                                    <div class="item" data-value="2">JavaScript</div>
-                                    <div class="item" data-value="3">sql</div>
-                                    <div class="item" data-value="4">DBSql</div>
+                                    <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="tag.name">java</div>
 
                                 </div>
                             </div>
@@ -188,7 +185,6 @@
     </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-<script src="../../static/lib/editormd/editormd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 <script src="../../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
@@ -196,7 +192,7 @@
 <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
 <script src="../../static/lib/waypoint/jquery.waypoints.min.js" th:src="@{/lib/waypoint/jquery.waypoints.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
-<script src="../../static/lib/editormd/css/editormd.min.css" th:src="@{/lib/editormd/css/editormd.min.css}"></script>
+<script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
     <script>
 
         //初始化Markdown编译器
@@ -206,7 +202,7 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "lib/editormd/lib/"
+                path    : "/lib/editormd/lib/"
             });
         });
 

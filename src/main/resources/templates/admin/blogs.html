@@ -119,6 +119,11 @@
                     </tfoot>
                 </table>
 
+                <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                    <i class="close icon"></i>
+                    <div class="header">提示：</div>
+                    <p th:text="${message}">恭喜,操作成功！</p>
+                </div>
             </div>
         </div>
     </div>
@@ -170,6 +175,14 @@
         $('.ui.dropdown').dropdown({
             on : 'hover'
         });
+
+        //    消息提示关闭初始化
+        $('.message .close')
+            .on('click',function (){
+                $(this)
+                    .closest('.message')
+                    .transition('fade');
+            });
 
         function page(obj){
             $("[name='page']").val($(obj).data("page"));
