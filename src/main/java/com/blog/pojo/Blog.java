@@ -196,6 +196,10 @@ public class Blog {
         this.tagIds = tagIds;
     }
 
+    public void init(){
+
+    }
+
     @Override
     public String toString() {
         return "Blog{" +

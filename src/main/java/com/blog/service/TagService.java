@@ -14,7 +14,7 @@ public interface TagService {
 
     Tag getTag(Long id);
 
-    Page<Tag> listTag(Pageable pageable,Tag tag);
+    Page<Tag> listTag(Pageable pageable);
 
     List<Tag> listTag();
 

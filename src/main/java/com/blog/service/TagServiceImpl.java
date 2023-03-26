@@ -40,7 +40,7 @@ public class TagServiceImpl implements TagService {
 
     @Transactional
     @Override
-    public Page<Tag> listTag(Pageable pageable, Tag tag) {
+    public Page<Tag> listTag(Pageable pageable) {
         return tagRepository.findAll(pageable);
     }
 
