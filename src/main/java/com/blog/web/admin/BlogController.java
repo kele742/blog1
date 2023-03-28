@@ -63,7 +63,9 @@ public class BlogController {
 
         model.addAttribute("types",typeService.listType());
         model.addAttribute("tags",tagService.listTag());
-        model.addAttribute("blog",blogService.getBlog(id));
+        Blog blog = blogService.getBlog(id);
+        blog.init();
+        model.addAttribute("blog",blog);
         return "admin/blogs-input";
     }
 
@@ -72,7 +74,12 @@ public class BlogController {
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
-        Blog b = blogService.saveBlog(blog);
+        Blog b ;
+        if(blog.getId() == null){
+            b = blogService.saveBlog(blog);
+        }else {
+            b = blogService.updateBlog(blog.getId(), blog);
+        }
         if( b == null){
             //如果保存成功给一个提示
             attributes.addFlashAttribute("message","操作失败");

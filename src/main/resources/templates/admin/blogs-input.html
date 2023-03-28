@@ -40,8 +40,8 @@
     <div class="ui attached menu">
         <div class="ui container">
             <div class="left menu">
-                <a href="#" class="orange active item">发布</a>
-                <a href="#" class="item">列表</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="orange active item">发布</a>
+                <a href="#" th:href="@{/admin/blogs}" class="item">列表</a>
             </div>
         </div>
     </div>
@@ -50,6 +50,7 @@
         <div class="ui container">
             <form id="blog-form" action="#" th:object="${blog}" th:action="@{/admin/blogs}" method="post" class="ui form">
                 <input type="hidden" name="published">
+                <input type="hidden" name="id" th:value="*{id}">
                 <div class="required field">
                     <div class="ui left labeled input">
                         <div class="ui orange basic selection compact dropdown label">
@@ -62,7 +63,7 @@
                                 <div class="item" data-value="翻译">翻译</div>
                             </div>
                         </div>
-                            <input type="text" name="title" placeholder="标题">
+                            <input type="text" name="title" placeholder="标题" th:value="*{title}">
                     </div>
                 </div>
 
@@ -78,7 +79,7 @@
                             <label class="ui compact orange basic label">分类</label>
                             <div class="ui fluid selection multiple search dropdown">
 <!--                                隐含域，如果是修改界面的话，那就拿到的id和type的进行匹配-->
-                                <input type="hidden" name="type.id" th:value="*{type.id}">
+                                <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">分类</div>
                                 <div class="menu">
