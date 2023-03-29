@@ -18,6 +18,8 @@ public interface TagService {
 
     List<Tag> listTag();
 
+    List<Tag> listTagTop(Integer size);
+
     Tag updateTag(Long id,Tag tag);
 
     List<Tag> listTag(String ids);

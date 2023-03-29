@@ -46,7 +46,7 @@
                                 <div class="ui header">博客</div>
                             </div>
                             <div class="right aligned column">
-                                共 <h2 class="ui orange header m-inline-block">14</h2> 篇
+                                共 <h2 class="ui orange header m-inline-block" th:text="${page.totalElement}">14</h2> 篇
                             </div>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
 <!--                    content-->
                     <div class="ui top attached orange segment">
                         <div class="ui vertical segment m-padded-to-big">
-                            <div class="ui mobile reversed stackable grid">
+                            <div class="ui middle aligned mobile reversed stackable grid" th:each="blog : ${page.content}">
                                 <div class="eleven wide column">
-                                    <h3 class="ui header">你真的了解行为模型吗？</h3>
-                                    <p>大多数人都以为要想实施某种行为，就必领先解决动机问题，但实际上它是最后一步要解快的问题。不管是在工作还是生活中，这个问题解决步骤都可以为你省去不少麻烦。</p>
+                                    <h3 class="ui header"><a href="#" class="m-black" th:text="${blog.title}">你真的了解行为模型吗？</a></h3>
+                                    <p class="m-text" th:text="|${blog.}|">大多数人都以为要想实施某种行为，就必领先解决动机问题，但实际上它是最后一步要解快的问题。不管是在工作还是生活中，这个问题解决步骤都可以为你省去不少麻烦。</p>
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <div class="ui horizontal link list">

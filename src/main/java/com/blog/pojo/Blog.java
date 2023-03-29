@@ -26,6 +26,7 @@ public class Blog {
     private boolean commentabled;
     private boolean published;
     private boolean recommended;
+    private String description;
     //对应数据库的时间
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -196,6 +197,14 @@ public class Blog {
         this.tagIds = tagIds;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void init(){
         this.tagIds = tagsToIds(this.getTags());
     }
@@ -231,8 +240,14 @@ public class Blog {
                 ", commentabled=" + commentabled +
                 ", published=" + published +
                 ", recommended=" + recommended +
+                ", description='" + description + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", type=" + type +
+                ", tags=" + tags +
+                ", user=" + user +
+                ", lists=" + lists +
+                ", tagIds='" + tagIds + '\'' +
                 '}';
     }
 }
