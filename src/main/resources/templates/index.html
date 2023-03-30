@@ -46,15 +46,15 @@
                                 <div class="ui header">博客</div>
                             </div>
                             <div class="right aligned column">
-                                共 <h2 class="ui orange header m-inline-block" th:text="${page.totalElement}">14</h2> 篇
+                                共 <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}">14</h2> 篇
                             </div>
                         </div>
                     </div>
 
 <!--                    content-->
                     <div class="ui top attached orange segment">
-                        <div class="ui vertical segment m-padded-to-big">
-                            <div class="ui middle aligned mobile reversed stackable grid" th:each="blog : ${page.content}">
+                        <div class="ui vertical segment m-padded-to-big" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="eleven wide column">
                                     <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">你真的了解行为模型吗？</a></h3>
                                     <p class="m-text" th:text="|${blog.description}......|">大多数人都以为要想实施某种行为，就必领先解决动机问题，但实际上它是最后一步要解快的问题。不管是在工作还是生活中，这个问题解决步骤都可以为你省去不少麻烦。</p>
@@ -69,7 +69,7 @@
                                                     <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2023-2-25</span>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="eye icon"></i>    <span th:text="${blog.views}">888</span>
+                                                    <i class="eye icon"></i><span th:text="${blog.views}">888</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="five wide column">
                                     <a href="" th:href="@{/blog/{id}(id=${blog.id})}" class="_blank">
-                                        <img src="https://unsplash.it/800/350?image=1005" th:src="@{blog.firstPicture}" alt="" class="ui rounded  middle image">
+                                        <img src="https://unsplash.it/800/350?image=1005" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded middle image">
                                     </a>
                                 </div>
                             </div>
@@ -314,11 +314,15 @@
                     </div>
 
 <!--                    footer-->
-                    <div class="ui bottom attached segment">
-                        <div class="ui mini middle floated pagination menu" th:if="${page.totalPages}>1">
-                            <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="item" style="color: orange">上一页</a>
-                            <a th:text="${page.number}+1" class="item">1</a>
-                            <a onclick="page(this)" th:attr="data-page=${page.number}+1" th:unless="${page.last}" class="item" style="color: orange">下一页</a>
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned three column grid">
+                            <div class="column">
+                                <a th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini orange basic button">上一页</a>
+                            </div>
+                            <div class="ui middle aligned column"><div th:text="${page.number}+1" style="text-align:center;color: orange" class="ui mini basic item">1</div></div>
+                            <div class="right aligned column">
+                                <a th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini orange basic button">下一页</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -342,7 +346,7 @@
                             <div class="ui fluid vertical menu">
                                 <a href="#" class="item" th:each="type : ${types}">
                                     <span th:text="${type.name}">学习日志</span>
-                                    <div class="ui orange basic left pointing label" th:text="${#arrays.lenggth(type.blogs)}">13</div>
+                                    <div class="ui orange basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                                 </a>
                                 <!--/*-->
                                 <a href="#" class="item">
@@ -386,7 +390,7 @@
                             <a href="#" target="_blank" class="ui orange basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
                                 <span th:text="${tag.name}">方法论</span><div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                             </a>
-<!--                            /*-->
+                            <!--/*-->
                             <a href="#" target="_blank" class="ui orange basic left pointing label m-margin-tb-tiny">
                                 方法论<div class="detail">23</div>
                             </a>
@@ -405,7 +409,7 @@
                             <a href="#" target="_blank" class="ui orange basic left pointing label m-margin-tb-tiny">
                                 方法论<div class="detail">23</div>
                             </a>
-<!--                            */-->
+                            <!--*/-->
                         </div>
                     </div>
 <!--                    最新推荐-->
@@ -416,7 +420,7 @@
                         <div class="ui segment" th:each="blog : ${recommendedBlogs}">
                                 <a href="#" th:href="@{/blog/{id}(id = ${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">用户故事(User Story)</a>
                         </div>
-<!--                        /*-->
+                        <!--/*-->
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-black">用户故事(User Story)</a>
                         </div>
@@ -438,7 +442,7 @@
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-black">用户故事(User Story)</a>
                         </div>
-<!--                        */-->
+                        <!--*/-->
                     </div>
 <!--                    二维码-->
                     <h4 class="ui horizontal divider header">扫码关注我</h4>
