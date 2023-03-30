@@ -22,12 +22,16 @@
             <a href="#" class="head1 item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>标签</a>
             <a href="#" class="head1 item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i>归档</a>
             <a href="#" class="head1 item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="info icon"></i>关于我</a>
-
             <div class="right head1 item m-mobile-hide">
-                <div class="ui icon input">
-                    <input type="text" aria-label="" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
+                <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
+                    <div class="ui icon input">
+                        <input type="text" name="query"  placeholder="Search...">
+<!--                        element-ui里面自带的事件，当点击时，触发提交事件-->
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+
+
             </div>
         </div>
     </div>

@@ -66,6 +66,11 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
+    public Page<Blog> listBlog(String query, Pageable pageable) {
+        return blogRepository.findByQuery(query,pageable);
+    }
+
+    @Override
     public List<Blog> listRecommendedBlogTop(Integer size) {
 
         Sort sort = Sort.by(Sort.Direction.DESC,"updateTime");
