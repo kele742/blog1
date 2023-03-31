@@ -4,6 +4,7 @@ import com.blog.NotFoundException;
 import com.blog.dao.BlogRepository;
 import com.blog.pojo.Blog;
 import com.blog.pojo.Type;
+import com.blog.util.MarkdownUtils;
 import com.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,19 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.findById(id).orElse(null);
+        if(blog == null){
+            throw new NotFoundException("该博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Transactional

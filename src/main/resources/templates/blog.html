@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -43,30 +43,30 @@
         <div class="ui top attached segment">
             <div class="ui horizontal link list">
                 <div class="item">
-                    <img src="../static/images/leaves-pattern.png" alt="" class="ui avatar image">
-                    <div class="content"><a href="#" class="header">徐欣阳</a></div>
+                    <img src="../static/images/leaves-pattern.png" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                    <div class="content"><a href="#" th:text="${blog.user.nickname}" class="header">徐欣阳</a></div>
                 </div>
                 <div class="item">
-                    <i class="calendar icon"></i> 2023-2-25
+                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2023-2-25</span>
                 </div>
                 <div class="item">
-                    <i class="eye icon">888</i>
+                    <i class="eye icon"></i><span th:text="${blog.views}">888</span>
                 </div>
             </div>
         </div>
         <div class="ui attached segment">
             <!--                图片区域-->
-            <img src="../static/images/leaves-pattern.png" alt="" class="ui fluid rounded image">
+            <img src="../static/images/leaves-pattern.png" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid rounded image">
         </div>
         <div class="ui attached padded segment">
             <!--                内容-->
             <div class="ui right aligned basic segment">
-                <div class="ui orange basic label">原创</div>
+                <div class="ui orange basic label" th:text="${blog.flag}">原创</div>
             </div>
-            <h4 class="ui center aligned header">解决行为问题的3个步骤</h4>
+            <h4 class="ui center aligned header" th:text="${blog.title}">解决行为问题的3个步骤</h4>
 
             <br>
-            <div id="content" class="typo js-toc-content typo-selection m-padded-lr-responsive m-padded-tb-large">
+            <div id="content" class="typo js-toc-content typo-selection m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
 
                 <h2 id="tagline" class="serif">一致化浏览器排版效果，构建最适合中文阅读的网页排版</h2>
 
@@ -486,7 +486,7 @@
             </div>
             <!--                标签-->
             <div class="m-padded-lr-responsive">
-                <div class="ui basic orange left pointing label">方法论</div>
+                <div class="ui basic orange left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
             </div>
 
             <!--                赞赏功能-->
@@ -497,12 +497,12 @@
                 <div class="ui orange basic label">
                     <div class="ui images" style="font-size: inherit !important;">
                         <div class="image">
-                            <img src="../static/images/WeChatQR.png" alt="" class="ui rounded bordered image"
+                            <img src="../static/images/WeChatQR.png" th:src="@{/images/WeChatQR.png}" alt="" class="ui rounded bordered image"
                                  style="width: 120px">
                             <div>微信</div>
                         </div>
                         <div class="image">
-                            <img src="../static/images/ZFBqr.png" alt="" class="ui rounded bordered image"
+                            <img src="../static/images/ZFBqr.png" th:src="@{/images/ZFBqr.png}" alt="" class="ui rounded bordered image"
                                  style="width: 120px">
                             <div>支付宝</div>
                         </div>
@@ -517,8 +517,8 @@
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ui class="list">
-                        <li>作者:徐欣阳（联系作者）</li>
-                        <li>发表时间:2023-2-28 11:28</li>
+                        <li>作者:<span th:text="${blog.user.nickname}">徐欣阳</span><a href="#" th:href="@{/about}" target="_blank">（联系作者）</a></li>
+                        <li>发表时间:<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}">2023-2-28 11:28</span></li>
                         <li>版权声明:自由转载-非商用-非衍生-保持著名（创意共享）</li>
                     </ui>
                 </div>
@@ -696,7 +696,7 @@
 <!--/*/</th:block>/*/-->
 
 
-<script>
+<script th:inline="javascript">
 
     <!--        拿到顶部导航button按钮了-->
     $('.menu.toggle').click(function () {
@@ -752,9 +752,11 @@
     });
     $('.qq').popup();
 
+    var serurl = "127.0.0.1:8080";
+    var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
     //生成二维码
     var qrcode = new QRCode("qrcode", {
-        text: "http://jindo.dev.naver.com/collie",
+        text: serurl+url,
         width: 90,
         height: 90,
         colorDark : "#000000",
