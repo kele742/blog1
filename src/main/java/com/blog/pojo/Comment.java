@@ -1,5 +1,8 @@
 package com.blog.pojo;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_comment")
+@Component
+@ConfigurationProperties(prefix = "comment")
 public class Comment {
     @Id
     @GeneratedValue
