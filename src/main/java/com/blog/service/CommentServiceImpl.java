@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService{
         }else {
             comment.setParentComment(null);
         }
-        comment.setCreatTime(new Date());
+        comment.setCreateTime(new Date());
         return commentRepository.save(comment);
     }
 }

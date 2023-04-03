@@ -1,8 +1,5 @@
 package com.blog.pojo;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,8 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_comment")
-@Component
-@ConfigurationProperties(prefix = "comment")
 public class Comment {
     @Id
     @GeneratedValue
@@ -21,7 +16,7 @@ public class Comment {
     private String content;
     private String avatar;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creatTime;
+    private Date createTime;
 
     //多的一方是维护关系的一方，一个的是被维护的一方
     @ManyToOne
@@ -77,12 +72,12 @@ public class Comment {
         this.avatar = avatar;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date creatTime) {
+        this.createTime = creatTime;
     }
 
     public Blog getBlog() {
@@ -117,7 +112,7 @@ public class Comment {
                 ", email='" + email + '\'' +
                 ", content='" + content + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", creatTime=" + creatTime +
+                ", creatTime=" + createTime +
                 '}';
     }
 }

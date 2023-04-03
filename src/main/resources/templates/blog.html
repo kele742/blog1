@@ -801,7 +801,8 @@
     $('#commentpost-button').click(function () {
         var boo =  $('.ui.form').form('validate form');
         if(boo){
-            console.log('校验成功');
+            console.log('');
+            postData();
         }else {
             console.log('校验失败');
         }

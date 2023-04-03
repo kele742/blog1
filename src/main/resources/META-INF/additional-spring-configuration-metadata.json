@@ -9,5 +9,15 @@
       "name": "comment.avator",
       "type": "java.lang.String",
       "description": "Description for comment.avator."
+    },
+    {
+      "name": "comment.avator",
+      "type": "java.lang.String",
+      "description": "Description for comment.avator."
+    },
+    {
+      "name": "comment.avator",
+      "type": "java.lang.String",
+      "description": "Description for comment.avator."
     }
   ] }
