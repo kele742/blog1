@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService{
     
     @Override
     public List<Comment> listCommentByBlogId(Long blogId) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
+        Sort sort = Sort.by(Sort.Direction.ASC, "createTime");
         List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId,sort);
         return eachComment(comments);
     }
@@ -62,21 +62,21 @@ public class CommentServiceImpl implements CommentService{
                 recursively(reply1);
             }
             //修改顶级节点的reply集合为迭代处理后的集合
-            comment.setReplyComments(tempReplys);
+            comment.setReplyComments(tempReplays);
             //清除临时存放区
-            tempReplys = new ArrayList<>();
+            tempReplays = new ArrayList<>();
         }
     }
     //存放迭代找出的所有子代的集合，生命周期是整个此类
-    private List<Comment> tempReplys = new ArrayList<>();
+    private List<Comment> tempReplays = new ArrayList<>();
 
-    //把所有的子集都放在这个tempReplys容器中去
+    //把所有的子集都放在这个tempRepalys容器中去
     private void recursively(Comment comment){
-        tempReplys.add(comment);//顶节点添加到临时存放集合
+        tempReplays.add(comment);//顶节点添加到临时存放集合
         if (comment.getReplyComments().size()>0){
             List<Comment> replys = comment.getReplyComments();
             for (Comment reply:replys) {
-                tempReplys.add(reply);
+                tempReplays.add(reply);
                 if(reply.getReplyComments().size()>0){
                     recursively(reply);
                 }
