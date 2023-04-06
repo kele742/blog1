@@ -49,7 +49,7 @@
 
             <div class="ui attached segment m-padded-tb-large">
 <!--                因为each的级别最高,所以也能用tag,进而使用tag.id-->
-                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank"  class="ui basic left pointing large label m-margin-tb-tiny" th:classappend="${tag.id==activeTagId} ? 'orange' " th:each="tag : ${tags}">
+                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing large label m-margin-tb-tiny" th:classappend="${tag.id==activeTagId} ? 'orange' " th:each="tag : ${tags}">
                     <span th:text="${tag.name}">学习日志</span>
                     <div class="detail" th:text="${#arrays.length(tag.blogs)}">13</div>
                 </a>
